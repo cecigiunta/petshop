@@ -1,0 +1,58 @@
+🌟 Subir los cambios al Repositorio: 🌟
+
+[para ver los archivos que se modificaron, y corroborar que no este modificando algo que no queria modificar]
+(En mi rama)
+git status
+
+[Agregamos todos los archivos al área de preparación (staging area)]
+(En mi rama):
+git add .
+
+[para ver los archivos que se cargaron en la staging area para ser comiteados, y corroborar que voy a subir todo lo que quiero subir]
+(En mi rama)
+git status
+
+[para commitear los cambios y generar un punto de control en el historial, en las comillas puede ir una descripción del commit]
+(En mi rama):
+git commit -m "detalles de los cambios que hice"
+
+[para pushear los commits hacia mi rama en el repositorio remoto y tener el github actualizado]
+(En mi rama):
+git push origin mi_rama
+
+[para traerme los commits nuevos que se encuentren en la rama master del repositorio de github]
+(En mi rama):
+git pull origin master
+
+[En este momento me va decir si hay algún conflicto, si lo hay, lo arreglamos antes de pasar al paso siguiente]
+
+Volvemos hacer un git add . y un git commit -m ""
+
+[para pushear los commits que se unieron a nuestra rama cuando hicimos el pull de master]
+(En mi rama)
+git push origin mi_rama
+
+[Ahora nos movemos a la rama master para hacer un merge con nuestra rama]
+(En mi rama):
+git checkout master
+
+[para corroborar que la tenemos actualizada]
+(En master):
+git pull origin mastergit
+
+[Para actualizar la rama local de master y traer todo lo nuevo de nuestra rama remota]
+(En master):
+git pull origin mi_rama
+
+[Ahora si actualizamos master pusheando todo lo nuevo]
+(En master):
+git push origin master
+
+[Volvemos a nuestra rama siempre para continuar trabajando en ella]
+(En master):
+git checkout mi_rama
+
+$ git clone https://github.com/ItCodersGroup/LigaFutbolTotal.git -b prueba --single-branch
+
+
+🚨 Importante volver siempre a nuestra rama por si las dudas de que volvamos a codear y no nos demos cuenta, para no trabajar sobre develop y producir algún conflicto🚨

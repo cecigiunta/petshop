@@ -1,0 +1,20 @@
+* {
+    --navbar: rgb(243, 147, 69);
+    --verde: rgb(156, 246, 209);
+}
+header{
+    background-color: var(--navbar) !important;
+}
+body{
+    background-color: var(--verde) !important;
+}
+.carrito {
+    transition: transform 0.15s ease-out;
+}
+.carrito:hover{
+    transform: scale(1.2);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) ;
+ 
+
+}

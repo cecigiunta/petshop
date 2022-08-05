@@ -2,8 +2,15 @@
     --navbar: rgb(243, 147, 69);
     --verde: rgb(156, 246, 209);
 }
+
+@font-face {
+    font-family: fuenteGordita;
+    src: url(./fonts/bungee-v11-latin-regular.woff2);
+  }
+
 header{
     background-color: var(--navbar) !important;
+    font-family: fuenteGordita;
 }
 body{
     background-color: var(--verde) !important;

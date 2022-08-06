@@ -17,9 +17,6 @@ header{
     width: 135px;
 }
 
-.container-fluid{
-    height: 37vh;
-}
 
 body{
     background-color: var(--verde) !important;

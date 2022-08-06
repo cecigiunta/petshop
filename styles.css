@@ -1,6 +1,6 @@
 * {
     --navbar: rgb(243, 147, 69);
-    --verde: rgb(156, 246, 209);
+    --verde: rgb(196, 248, 227);
 }
 
 @font-face {
@@ -12,6 +12,11 @@ header{
     background-color: var(--navbar) !important;
     font-family: fuenteGordita;
 }
+
+.header-img-container{
+    width: 135px;
+}
+
 body{
     background-color: var(--verde) !important;
 }
@@ -24,4 +29,30 @@ body{
     color: var(--verde) ;
  
 
+}
+
+.heart{
+    transition: transform 0.15s ease-out;
+}
+
+.heart:hover{
+    transform: scale(1.2);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) ;
+}
+
+.dropdown:hover>.dropdown-menu{
+    display: block;
+    background-color: var(--navbar) !important;
+}
+
+.dropdown-item:hover{
+    background-color: var(--verde) !important;
+
+}
+
+.nav-link:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) !important;
 }

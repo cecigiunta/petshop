@@ -1,0 +1,35 @@
+body{
+    background-color: rgb(255, 255, 255)!important
+    /* background-color: rgb(39, 157, 153)!important */
+}
+.iner{
+    /* background-color: rgb(247, 145, 12); */
+    background-color: rgb(241, 203, 203);
+ 
+    
+}
+.titulo{
+   color: rgb(250, 225, 5);
+   text-align: center;
+}
+.ubicacion{
+    text-align: center;
+    background-color: rgb(39, 157, 153);
+}
+.border {
+    border: none;
+ 
+}
+.boderDerecha{
+    border-radius:0px 20px 20px 0px ;
+    border: none;
+}
+.borderiz{
+    border-radius:20px 0px 0px 20px ;
+
+}
+.oferta{
+    text-align: center;
+    background-color: rgb(100, 123, 133);
+    color: aliceblue;
+}

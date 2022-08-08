@@ -1,3 +1,7 @@
+@font-face {
+    font-family: fuenteGordita;
+    src: url(./fonts/bungee-v11-latin-regular.woff2);
+}
 * {
 
     --navbar: #fbb67e;
@@ -5,14 +9,9 @@
 
 }
 
-@font-face {
-    font-family: fuenteGordita;
-    src: url(./fonts/bungee-v11-latin-regular.woff2);
-  }
-
 header{
     background-color: var(--navbar) !important;
-    font-family: fuenteGordita;
+    font-family: fuenteGordita !important;
 }
 
 .header-img-container{
@@ -20,17 +19,15 @@ header{
 }
 
 
-body{
-    /* background-color: var(--verde) !important; */
-}
 .carrito {
     transition: transform 0.15s ease-out;
 }
 .carrito:hover{
     transform: scale(1.2);
     transition: transform 0.15s ease-in;
-    color: var(--verde);
+    color: var(--verde) ;
 }
+
 
 .heart{
     transition: transform 0.15s ease-out;
@@ -74,3 +71,44 @@ body{
     font-size: smaller;
     font-style: italic;
 }
+
+
+.header-size{
+    height: 19vh;
+}
+
+.offcanvas-body{
+    height: 0%;
+}
+
+.bg-img{
+    background-image: url(./assets/footer.svg);
+    background-repeat: no-repeat;
+    background-position-x: 88%;
+}
+
+@media (max-width: 470px){
+    .bg-img{
+        background-image: url(./assets/footer.svg);
+        background-repeat: no-repeat;
+        background-position-x: 16%;
+    }
+}
+
+.img-footer{
+    width: 15vh;
+}
+
+.radio-img{
+    border-radius: 6px;
+    height: 44px;
+    width: 70px;
+    margin-bottom: 20px;
+}
+
+footer h5{
+    font-family: fuenteGordita;
+    font-size: medium;
+}
+
+

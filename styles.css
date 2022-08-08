@@ -1,18 +1,21 @@
 @font-face {
-    font-family: LetraMain;
-    src: url(./fonts/font-main.woff);
-  }
-* {
-    --navbar: rgb(243, 147, 69);
-    --verde: rgb(156, 246, 209);
-    font-family: LetraMain;
+    font-family: fuenteGordita;
+    src: url(./fonts/bungee-v11-latin-regular.woff2);
 }
+* {
+    --navbar: #fbb67e;
+    --verde: #c4f8e3;
+}
+
 header{
     background-color: var(--navbar) !important;
+    font-family: fuenteGordita !important;
 }
-body{
-    /* background-color: var(--verde) !important; */
+
+.header-img-container{
+    width: 135px;
 }
+
 .carrito {
     transition: transform 0.15s ease-out;
 }
@@ -22,3 +25,45 @@ body{
     color: var(--verde) ;
 }
 
+
+.heart{
+    transition: transform 0.15s ease-out;
+}
+
+.heart:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) ;
+}
+
+.dropdown:hover>.dropdown-menu{
+    display: block;
+    background-color: var(--navbar) !important;
+}
+
+.dropdown-item:hover{
+    background-color: var(--verde) !important;
+
+}
+
+.nav-link:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) !important;
+}
+
+.form-control{
+    height: 30px;
+}
+
+.btn:hover{
+    background-color: var(--verde) !important;
+    color: var(--verde) !important;
+    border-color: var(--verde);
+    transform: scale(1.1);
+}
+
+::placeholder{
+    font-size: smaller;
+    font-style: italic;
+}

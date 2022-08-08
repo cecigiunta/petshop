@@ -4,10 +4,7 @@ Vue.createApp({
             url: 'https://apipetshop.herokuapp.com/api/articulos',
             results: [],
             juguetes: [],
-            farmacia: [],   
-
-        
-         
+            farmacia: [],          
             
     }},
     created(){

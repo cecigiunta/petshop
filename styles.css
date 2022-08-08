@@ -1,10 +1,25 @@
 * {
-    --navbar: rgb(250, 166, 98);
-    --verde: rgb(156, 246, 209);
+
+    --navbar: #fbb67e;
+    --verde: #c4f8e3;
+
 }
+
+@font-face {
+    font-family: fuenteGordita;
+    src: url(./fonts/bungee-v11-latin-regular.woff2);
+  }
+
 header{
     background-color: var(--navbar) !important;
+    font-family: fuenteGordita;
 }
+
+.header-img-container{
+    width: 135px;
+}
+
+
 body{
     /* background-color: var(--verde) !important; */
 }
@@ -14,7 +29,48 @@ body{
 .carrito:hover{
     transform: scale(1.2);
     transition: transform 0.15s ease-in;
-    color: var(--verde) ;
- 
+    color: var(--verde);
+}
 
+.heart{
+    transition: transform 0.15s ease-out;
+}
+
+.heart:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) ;
+}
+
+.dropdown:hover>.dropdown-menu{
+    display: block;
+    background-color: var(--navbar) !important;
+}
+
+.dropdown-item:hover{
+    background-color: var(--verde) !important;
+
+}
+
+.nav-link:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease-in;
+    color: var(--verde) !important;
+}
+
+.form-control{
+    height: 30px;
+}
+
+.btn:hover{
+    background-color: var(--verde) !important;
+    color: var(--verde) !important;
+    border-color: var(--verde);
+    transform: scale(1.1);
+}
+
+
+::placeholder{
+    font-size: smaller;
+    font-style: italic;
 }

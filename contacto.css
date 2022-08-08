@@ -1,0 +1,121 @@
+.body-contacto{
+    background-color: #ebebeb;
+    background-image: url(./assets/background.jpg);
+
+}
+.title {
+    color: rgba(60, 61, 61, 0.838);
+}
+
+/*--------------------------- Formulario -------------------------------*/
+.card-form{
+    background-color: rgba(111, 215, 210, 0.664);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+.card-form:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+.card-form .form-group{
+    margin-bottom: 40px;
+}
+.btn-style{
+    border-radius: 20px;
+    color: rgba(240, 134, 21, 0.889) !important;
+    font-size: 23px !important ;
+    font-weight: bold !important;
+    padding: 10px;  
+    transition: all 0.3s ease-in-out;
+}
+.btn-style:hover{
+    background-color: rgba(255, 44, 135, 0.671) !important;
+    border: none;
+    color: aliceblue !important;
+    transform: scale(1.1);
+}
+
+/*--------------------------- Contactanos -------------------------------*/
+.card-contactanos{
+    background-color: rgba(255, 255, 253, 0.834);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+    margin-top: 50px;
+    border-radius: 20px;
+}
+.div-contacto-int{
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-out;
+    border-radius: 20px;
+}
+.div-contacto-int:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    transform: scale(1.1);
+}
+.contacto-icon{
+    color: rgb(133, 129, 129);
+    margin: 20px;
+}
+.contacto-icon:hover{
+    color: rgb(255, 164, 45);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CHECKBOXES*/
+
+.iconSelect {
+    width: 100%;
+}    
+    .custom-control-label {
+    background-color: rgba(238, 238, 238, 0.605);
+    width: 90%;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 20px;
+    transition: background-color .1s linear, color .1s linear;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.363);
+    }
+    .custom-control-label:hover {
+    background-color: rgba(255, 255, 255, 0.796);
+    transform: scale(1.1);
+    color: rgb(238, 105, 227);
+    cursor: pointer;
+    }
+    .custom-control-label:active {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.363);
+            transform: translateY(3px);
+        }
+    .custom-control-input:checked~.custom-control-label {
+    background: rgba(248, 72, 180, 0.727);
+    color: #fff;
+    }
+
+
+
+
+
+
+
+
+
+
+
+

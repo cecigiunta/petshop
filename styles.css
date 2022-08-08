@@ -21,6 +21,7 @@ header{
     width: 135px;
 }
 
+
 body{
     background: url(./img/bg-paws.jpg) !important;
 
@@ -74,5 +75,42 @@ body{
 ::placeholder{
     font-size: smaller;
     font-style: italic;
+}
+.header-size{
+    height: 19vh;
+}
+
+.offcanvas-body{
+    height: 0%;
+}
+
+.bg-img{
+    background-image: url(./assets/footer.svg);
+    background-repeat: no-repeat;
+    background-position-x: 88%;
+}
+
+@media (max-width: 470px){
+    .bg-img{
+        background-image: url(./assets/footer.svg);
+        background-repeat: no-repeat;
+        background-position-x: 16%;
+    }
+}
+
+.img-footer{
+    width: 15vh;
+}
+
+.radio-img{
+    border-radius: 6px;
+    height: 44px;
+    width: 70px;
+    margin-bottom: 20px;
+}
+
+footer h5{
+    font-family: fuenteGordita;
+    font-size: medium;
 }
 

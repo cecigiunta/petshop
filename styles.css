@@ -2,6 +2,10 @@
     font-family: fuenteGordita;
     src: url(./fonts/bungee-v11-latin-regular.woff2);
 }
+@font-face {
+    font-family: LexendDeca;
+    src: url(./fonts/LexendDeca.ttf);
+}
 * {
 
     --navbar: #fbb67e;
@@ -18,7 +22,10 @@ header{
     width: 135px;
 }
 
+body{
+    background: url(./img/bg-paws.jpg) !important;
 
+}
 .carrito {
     transition: transform 0.15s ease-out;
 }

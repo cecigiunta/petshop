@@ -1,5 +1,4 @@
 *{
-    font-family: fuenteGordita;
     src: url(./fonts/bungee-v11-latin-regular.woff2);
   }
 body{
@@ -8,6 +7,7 @@ body{
     /* background: url(https://i.pinimg.com/236x/f1/31/21/f131218f92ef17f96be542dddfb1745c--pattern-wallpaper-background-images.jpg) ; */
     
 }
+
 .iner{
     /* background-color: rgb(247, 145, 12); */
     /* background-color: rgb(147, 208, 240,0.666); */

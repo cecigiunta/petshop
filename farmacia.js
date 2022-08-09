@@ -5,10 +5,7 @@ Vue.createApp({
             results: [],
             juguetes: [],
             farmacia: [],   
-
-        
-         
-            
+   
     }},
     created(){
             fetch(this.url)
@@ -22,12 +19,11 @@ Vue.createApp({
     methods: {
 
 
-
-
-
     },
     computed: {
-        
+        filtrarMedicamentos: function(){
+            this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento")
+        }
 
         },            
 }).mount('#app')

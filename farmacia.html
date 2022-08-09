@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./farmacia.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>Mundo Patitas</title>
@@ -55,16 +58,44 @@
                 </div>
             </nav>
         </header>
-        <main>
+        <main class="medicamentos-container">
+            {{filtrarMedicamentos}}
+            <div v-for="medicamento in farmacia">
+                <div class="card">
+                    <img class="card-img-top" :src="medicamento.imagen" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{medicamento.nombre}}</h5>
+                        <p class="card-text">{{medicamento.descripcion}}</p>
+                        <p class="card-text">Precio: ${{medicamento.precio}}</p>
+                        
+                        <p v-if="medicamento.stock < 5" class="card-text">Disponibles: {{medicamento.stock}} <span class="text-danger">¡Últimas unidades!</span></p>
+                        <p v-else class="card-text" >Disponibles: {{medicamento.stock}} unidades</p>
 
+                        <form class="cantidad">
+                            <label for="edad">Cantidad: </label>
+                            <input class="text-center" type="number" min="1" :max="medicamento.stock" value="1" name="cantidad" id="cantidad"> 
+                        </form>
+
+                        <button type="button" class="btn btn-outline-danger boton">Agregar al carrito 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
         </main>
-        <footer>
-        </footer>
     </div>
-
+       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="./farmacia.js"></script>
+    <!--<script src="./app.js"></script> !-->
 
-    <script src="./app.js"></script>
+    <footer>
+            
+    </footer>
 </body>
 </html>

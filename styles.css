@@ -1,34 +1,30 @@
+@font-face {
+    font-family: fuenteGordita;
+    src: url(./fonts/bungee-v11-latin-regular.woff2);
+}
 * {
     --navbar: #fbb67e;
     --verde: #c4f8e3;
 }
 
-@font-face {
-    font-family: fuenteGordita;
-    src: url(./fonts/bungee-v11-latin-regular.woff2);
-  }
-
 header{
     background-color: var(--navbar) !important;
-    font-family: fuenteGordita;
+    font-family: fuenteGordita !important;
 }
 
 .header-img-container{
     width: 135px;
 }
 
-
-body{
-    background-color: var(--verde) !important;
-}
 .carrito {
     transition: transform 0.15s ease-out;
 }
 .carrito:hover{
     transform: scale(1.2);
     transition: transform 0.15s ease-in;
-    color: var(--verde);
+    color: var(--verde) ;
 }
+
 
 .heart{
     transition: transform 0.15s ease-out;

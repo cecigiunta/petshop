@@ -3,8 +3,10 @@
     src: url(./fonts/bungee-v11-latin-regular.woff2);
 }
 * {
+
     --navbar: #fbb67e;
     --verde: #c4f8e3;
+
 }
 
 header{
@@ -15,6 +17,7 @@ header{
 .header-img-container{
     width: 135px;
 }
+
 
 .carrito {
     transition: transform 0.15s ease-out;
@@ -63,10 +66,12 @@ header{
     transform: scale(1.1);
 }
 
+
 ::placeholder{
     font-size: smaller;
     font-style: italic;
 }
+
 
 .header-size{
     height: 19vh;
@@ -104,4 +109,5 @@ header{
 footer h5{
     font-family: fuenteGordita;
     font-size: medium;
+
 }

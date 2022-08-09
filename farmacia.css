@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.medicamentos-container{
+    width: 70%;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-evenly !important;
+    justify-content: center;
+    margin:auto;
+}
+.card{
+    margin-top: 9vh;
+    width: 19rem;
+    height: 15rem;
+    background-color: rgba(253, 179, 42, 0.925) !important;
+    
+}
+#cantidad{
+    width: 2.5rem;
+    margin-left: 0.2rem;
+    margin-bottom: 1rem;
+}
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
+}

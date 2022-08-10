@@ -5,7 +5,7 @@
 }
 
 .medicamentos-container{
-    width: 70%;
+    width: 90%;
     display: flex;
     flex-direction:row;
     flex-wrap: wrap;
@@ -27,4 +27,43 @@
 }
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1
+}
+.btn-info{
+    background-color: #ff391f!important;
+    border: none;
+    color: white !important;
+}
+.btn-info:hover{
+    background-color: red !important;
+}
+.btn-modal{
+    margin-left: 2.5rem !important;
+}
+.btn-modal-dos{
+    margin-left: 5.5rem !important;
+}
+.footer-modal-farmacia{
+    display: flex;
+    justify-content: space-evenly;
+}
+.farmacia-ultimos{
+    background-color: rgb(255, 0, 13) !important;
+    color: white;
+    width: 100%;
+    left: 0px;
+}
+.btn-hover:hover{
+    background-color: red !important;
+}
+.btn-modal-dos-hover:hover{
+    background-color: orangered !important;
+}.btn-modal{
+    margin-right: 1.5rem !important;
+}
+.farmacia-cards{
+    min-height: 200px;
+}
+.modal-footer{
+    display: flex !important;
+    justify-content: space-evenly !important;
 }

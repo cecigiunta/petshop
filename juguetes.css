@@ -1,5 +1,5 @@
 .ultimas-unidades {
-    background-color: rgba(255, 102, 0, 0.603) !important;
+    background-color: rgba(209, 30, 30, 0.603) !important;
     color: white;
     width: 100%;
     left: 0px;
@@ -33,4 +33,33 @@
 .more-info {
     background-color: #faa560!important;
     border-color: #faa560!important;
+}
+
+.medicamentos-container{
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-evenly !important;
+    justify-content: center;
+    margin:auto;
+}
+
+.modal-body {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+
+}
+
+.button-heart{
+   background-color: red!important;
+}
+
+.spinner {
+    width: 22rem;
+    height: 20rem;
+}
+
+main {
+    min-height: 100vh;
 }

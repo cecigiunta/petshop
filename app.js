@@ -9,8 +9,8 @@ Vue.createApp({
     }},
     created(){
             fetch(this.url)
-            .then((res) => res.json())
-            .then((data) => {
+            .then(res => res.json())
+            .then(data => {
                 this.results = data.response;
                 console.log(this.results);
             })

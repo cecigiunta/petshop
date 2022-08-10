@@ -7,10 +7,8 @@
     src: url(./fonts/LexendDeca.ttf);
 }
 * {
-
     --navbar: #fbb67e;
     --verde: #c4f8e3;
-
 }
 
 header{
@@ -66,12 +64,14 @@ body{
     height: 30px;
 }
 
-.btn:hover{
+
+/*! COMENTE ESTO POR EL HOVER ----------------- CECI ♥ 
+/* .btn:hover{
     background-color: var(--verde) !important;
     color: var(--verde) !important;
     border-color: var(--verde);
     transform: scale(1.1);
-}
+} */
 
 
 ::placeholder{
@@ -102,6 +102,30 @@ body{
     }
 }
 
+/*------------------------- Barra de búsqueda -------------------------*/
+.container-input{
+    width: 300px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.container-input input#busqueda{
+    width: 300px;
+    height: 30px;
+    background: #ffffff;
+    border: 2px solid rgb(42, 40, 40);
+    padding-left: 45px;
+    border-radius: 20px;
+}
+
+ .container-input .icon{
+    position: absolute;
+    top: 20%;
+    margin: -1px 16px;
+    z-index: 1;
+}
+
+/*---------------------- Footer -------------------------*/
 .img-footer{
     width: 15vh;
 }

@@ -4,7 +4,15 @@ Vue.createApp({
             url: 'https://apipetshop.herokuapp.com/api/articulos',
             results: [],
             juguetes: [],
-            farmacia: [],          
+            farmacia: [], 
+            
+            
+
+
+
+
+
+            busqueda: ""
             
     }},
     created(){
@@ -27,7 +35,9 @@ Vue.createApp({
                 confirmButtonColor: 'rgb(9, 177, 9)',
                 // showCancelButton: true,
                 })
-            }
+            },
+      
+
     },
     computed: {
         

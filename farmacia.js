@@ -27,6 +27,10 @@ Vue.createApp({
                 //lineas de DARIO DE BUSQUEDA
                 this.results = data.response;
                 this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento")
+                .map(item => {
+                    item.isInCart = false
+                    return item
+                });
                 this.farmaciafiltrada = this.farmacia.sort((a, b) => a.stock - b.stock);
                 // this.juguetes = this.results.filter((juguete) =>juguete.tipo === "Juguete")
                 console.log(this.farmacia);
@@ -43,8 +47,10 @@ Vue.createApp({
                 aux.cantidad = 1;
                 this.carrito.push(aux);
                 this.total_carrito = this.total_carrito + item.precio;
-                localStorage.setItem('carrito', JSON.stringify(this.carrito));
             }
+            let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
+            this.farmacia[itemIndex].isInCart = true
+            localStorage.setItem('carrito', JSON.stringify(this.carrito));
         },
         sumarUno: function (item) {
             let condicion = this.carrito.some(producto => producto._id === item._id);

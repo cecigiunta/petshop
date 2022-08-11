@@ -5,8 +5,10 @@ Vue.createApp({
             results: [],
             juguetes: [],
             farmacia: [],
+            rangeJuguete: 0, //AGREGO RANGO PARA JUGUETES /CARO
             range: 0,
             preciosFiltrados: [],
+            preciosFiltradosJuguetes: [],
 
             //Mis lineas de CARRITO:
             carrito: [],
@@ -17,7 +19,7 @@ Vue.createApp({
 
             // Lineas de DARIO de BUSQUEDA
             farmaciafiltrada: [],
-            jueguetefiltrados: [],
+            jueguetefiltrados: [], //AGREGO ARRAY PARA GUARDAR JUGUETES FILTRADOS /CARO
             busqueda: "",
 
             //lineas CARO FAVORITOS
@@ -32,19 +34,20 @@ Vue.createApp({
                 //lineas de DARIO DE BUSQUEDA
                 this.results = data.response;
                 this.agregarPropiedades(); //AGREGA PROPIEDADES A CADA ITEM
-                this.preciosFiltrados = data.response.sort((a, b) => {
-                    return a.stock - b.stock;
-                }); // ?????
-                this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento")
+                // this.preciosFiltrados = data.response.sort((a, b) => {
+                //     return a.stock - b.stock;
+                // }); // ?????
+                this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento").sort((a, b) => a.stock - b.stock)
                 .map(item => {
                     item.isInCart = false
                     return item
                 });
-                this.farmaciafiltrada = this.farmacia.sort((a, b) => a.stock - b.stock);
-                // this.juguetes = this.results.filter((juguete) =>juguete.tipo === "Juguete")
-                console.log(this.farmacia);
                 this.getJuguetes();
+                this.farmaciafiltrada = this.farmacia
+                console.log(this.farmaciafiltrada)
+                this.jueguetefiltrados = this.getJuguetes(); //AGREGUE ESTA LINEA PARA QUE SE FILTRE JUGUETSS
                 
+           
             })
             .catch(err => console.error(err))
         this.carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -131,13 +134,6 @@ Vue.createApp({
             })
             localStorage.removeItem('carrito');
         },
-        filtrarPrecios: function(){
-            this.preciosFiltrados = this.farmacia.filter(item => item.precio <= this.range)
-            this.preciosFiltrados.sort((a, b) => {
-                return a.stock - b.stock;
-            });
-            console.log(this.preciosFiltrados)
-        },
         //FUNCIONES PARA FAV / CARO
         agregarPropiedades: function() {
             for(item of this.results) {
@@ -145,11 +141,14 @@ Vue.createApp({
                 item.agregar = true;
                 item.id = item.nombre.replace(/ /g, "_").slice(0,10).toLowerCase();
                 item.idtag = "#"+item.id;
+                item.isInCart = false
+                
               
               } else {
                 item.agregar = false;
                 item.id = item.nombre.replace(/ /g, "_").slice(0,10).toLowerCase();
                 item.idtag= "#"+item.id;
+                item.isInCart = false
               }
             
             }
@@ -161,7 +160,6 @@ Vue.createApp({
           agregarFavorito : function(item) {
            if(!this.favoritos?.some(favorito=> favorito.nombre === item.nombre)) {
               this.favoritos?.push(item);
-              console.log(this.favoritos);
               item.agregar = false;
               localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
                
@@ -177,16 +175,27 @@ Vue.createApp({
 
     },
     computed: {
+        //ESTA FUNCION FILTRA EL RANGO Y FILTRA BUSQUEDA
         filtrarbusqueda: function () {
             if (document.title === "Farmacia | Mundo Patitas") {
-                this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
+                if(this.range >= 240) {
+                this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item => item.precio <= this.range).sort((a, b) => {
+                    return a.stock - b.stock;
+                });} else {
+                    this.farmaciafiltrada = this.farmacia;
+                }
+                console.log(this.farmaciafiltrada)
+           
             }
             if (document.title === "Juguetes | Mundo Patitas") {
-                this.juguetesfiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
+                if(this.rangeJuguete >= 320) {
+                    this.juguetefiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete).sort((a, b) => {
+                        return a.stock - b.stock;
+                    });} else {
+                        this.juguetefiltrados = this.juguetes;
+                    }
+                console.log(this.juguetefiltrados)
             }
-        },
-        cambiar: function(){
-            return this.range
         },
     },
 }).mount('#app')

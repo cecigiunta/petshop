@@ -15,7 +15,7 @@
 }
 .card{
     margin-top: 9vh;
-    width: 19rem;
+    width: 22rem;
     height: 15rem;
     background-color: rgba(115, 247, 192, 0.82) !important;
 
@@ -66,4 +66,9 @@ input[type=number]::-webkit-inner-spin-button {
 .modal-footer{
     display: flex !important;
     justify-content: space-evenly !important;
+}
+
+.card-img-top {
+    object-fit: contain;
+    max-height: 100%;
 }

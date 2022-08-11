@@ -1,6 +1,4 @@
-const { createApp } = Vue
-
-createApp({
+Vue.createApp({
   data() {
     return {
       results: [],
@@ -10,15 +8,13 @@ createApp({
       
     }
   },
-  created() {
-    fetch('https://apipetshop.herokuapp.com/api/articulos')
+  mounted() {
+    fetch("https://apipetshop.herokuapp.com/api/articulos")
       .then(res => res.json())
       .then(datos => {
         this.results = Array.from(datos.response);
-        console.log(this.results)
         this.getJuguetes();
-        
-        console.log(this.juguetes)
+        console.log(this.results)
         
       })
       .catch(error => console.log(error));
@@ -26,35 +22,36 @@ createApp({
   },
   methods: {
     getJuguetes: function () {
-        this.juguetes = this.results.filter(item => item.tipo == "Juguete").sort((a,b)=> a.stock - b.stock)
+        this.juguetes = this.results.filter(item => item.tipo === "Juguete").sort((a,b)=> a.stock - b.stock)
         for(juguete of this.juguetes) {
-          if(!this.favoritos.some(item => item.nombre === juguete.nombre)){
-            juguete.a単adir = true;
+          if(!this.favoritos?.some(item => item.nombre === juguete.nombre)) {
+            juguete.agregar = true;
             juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
             juguete.idtag = "#"+juguete.nombre;
             juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
             
           } else {
-            juguete.a単adir = false;
+            juguete.agregar = false;
             juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
             juguete.idtag= "#"+juguete.nombre;
             juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
           }
-          
-        } 
+        
+        }
     },
     agregarFavorito : function(juguete) {
-     if(!this.favoritos.some(item => item.nombre === juguete.nombre)) {
-        this.favoritos.push(juguete);
-        juguete.a単adir = false;
+     if(!this.favoritos?.some(item => item.nombre === juguete.nombre)) {
+        this.favoritos?.push(juguete);
+        console.log(this.favoritos);
+        juguete.agregar = false;
         localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
          
      }
      this.condicionFav = false;
     },
     quitarFavorito : function(juguete) {
-        juguete.a単adir = true;
-        this.favoritos = this.favoritos.filter(j => j.nombre !== juguete.nombre)
+        juguete.agregar = true;
+        this.favoritos = this.favoritos?.filter(j => j.nombre !== juguete.nombre)
         this.condicionFav = true;
         localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
     }

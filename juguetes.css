@@ -17,6 +17,7 @@
 .card-body  a{
     background-color: rgba(240, 248, 255, 0)!important;
 }
+
 .title-juguetes {
     width: 900px;
     height: 40px;
@@ -51,9 +52,6 @@
 
 }
 
-.button-heart{
-   background-color: red!important;
-}
 
 .spinner {
     width: 22rem;

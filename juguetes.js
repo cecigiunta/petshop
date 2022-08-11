@@ -12,28 +12,29 @@ createApp({
   },
   created() {
     fetch("https://apipetshop.herokuapp.com/api/articulos")
-      .then(res => res.json())
-      .then(datos => {
-        this.results = Array.from(datos.response);
+      .then((res) => res.json())
+      .then((data) => {
+        this.results = Array.from(data.response);
+        this.juguetes = this.results.filter(item => item.tipo == "Juguete").sort((a,b)=> a.stock - b.stock)
         this.getJuguetes();
         console.log(this.juguetes)
+        console.log(this.favoritos)
         
       })
       .catch(error => console.log(error));
       this.favoritos = JSON.parse(localStorage.getItem('favoritos'))
   },
   methods: {
-    getJuguetes: function () {
-        this.juguetes = this.results.filter(item => item.tipo == "Juguete").sort((a,b)=> a.stock - b.stock)
+    getJuguetes: function() {
         for(juguete of this.juguetes) {
           if(!this.favoritos.some(item => item.nombre === juguete.nombre)){
-            juguete.añadir = true;
+            juguete.agregar = true;
             juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
             juguete.idtag = "#"+juguete.nombre;
             juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
             
           } else {
-            juguete.añadir = false;
+            juguete.agregar = false;
             juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
             juguete.idtag= "#"+juguete.nombre;
             juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
@@ -56,8 +57,6 @@ createApp({
         this.condicionFav = true;
         localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
     }
-  },
-  computed: {
-    
   }
+  
 }).mount('#app')

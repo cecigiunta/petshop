@@ -148,9 +148,10 @@
                     <div> No hay resultados para esta búsqueda.</div>
                 </div>
             </div>
-            
+
+            <!-- COMIENZO DE LA CARD -->
             <div v-for="medicamento in farmaciafiltrada">
-                {{filtrarbusqueda}}
+              
                 <div class="card farmacia-cards">
                     <span v-if="medicamento.stock < 5" class="farmacia-ultimos text-center border rounded-top position-absolute">
                         Últimas unidades

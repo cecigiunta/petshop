@@ -33,7 +33,7 @@ body{
 }
 
 .boderDerecha{
-    border-radius:0px 20px 20px 0px ;
+    border-radius:15px ;
     border: none;
 }
 .borderiz{
@@ -41,6 +41,7 @@ body{
 
 }
 .oferta{
+    
     text-align: center;
     background-color: rgb(100, 123, 133);
     color: aliceblue;
@@ -48,8 +49,8 @@ body{
 }
 
 .carousel-item {
-    height: 10%;
-    min-height: 50px;
+    height: 100%;
+    min-height: 60px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -66,9 +67,12 @@ margin-right: 25%;
 border-radius: 20px;
 border: 2px;
 border-color: black;
-box-shadow:1px 3px 3px black;
+box-shadow:1px 2px 2px black;
   }
   .mapa iframe{
     box-shadow:1px 1px 1px black;
     
+  }
+  .m-3{
+    font-size: 15px;
   }

@@ -38,7 +38,7 @@ Vue.createApp({
                 this.agregarPropiedades(); //AGREGA PROPIEDADES A CADA ITEM
                 this.preciosFiltrados = data.response.sort((a, b) => {
                     return a.stock - b.stock;
-                }); // ?????
+                }); 
                 this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento")
                 .map(item => {
                     item.isInCart = false

@@ -67,3 +67,6 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex !important;
     justify-content: space-evenly !important;
 }
+.carrito-offcanva{
+    background-color: #f6f1eb;
+}

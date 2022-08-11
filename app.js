@@ -1,88 +1,211 @@
 Vue.createApp({
     data() {
         return {
-            url: 'https://apipetshop.herokuapp.com/api/articulos',
             results: [],
-            juguetes: [],
             farmacia: [],
-
-
-
-
-
-            //Mis lineas
-            carrito: [],
-            cantidad: 0,
+            juguetes: [],
+            favoritos: [],
+            condicionFav: true,
+            carrito: localStorage.getItem('carrito') ? JSON.parse(localStorage.getItem('carrito')) : [],
+            cantidad: 1,
             total_carrito: 0,
-            total_carrito_farmacia: 0,
-            total_carrito_juguetes: 0
+            busqueda: "",
+            farmaciafiltrada: [],
+            jueguetesfiltrados: [],
+            range: 0,
+            preciosFiltrados: [],
+            preciosFiltradosFarmacia: [],
+            preciosFiltradosJuguetes: [],
+        }
+    },
+    mounted() {
+        fetch("https://apipetshop.herokuapp.com/api/articulos")
+            .then(res => res.json())
+            .then(datos => {
+                this.results = Array.from(datos.response).map(item => {
+                    item.isInCart = false
+                    return item
+                }),
+                this.agregarPropiedades();
 
-
-
-            // DARIO : []    
-            
-            
-
-
-
-
-            
-    }},
-    created(){
-            fetch(this.url)
-            .then((res) => res.json())
-            .then((data) => {
-                this.results = data.response;
-                console.log(this.results);
+                if(document.title === 'Juguetes | Mundo Patitas'){
+                    this.getJuguetes();
+                    this.preciosFiltrados = this.juguetes.sort((a, b) => {
+                        return a.stock - b.stock;
+                    });
+                }
+                if(document.title === 'Farmacia | Mundo Patitas'){
+                    this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento"),
+                    this.farmaciafiltrada = this.farmacia.sort((a, b) => a.stock - b.stock)
+                    this.preciosFiltrados = this.farmacia.sort((a, b) => {
+                        return a.stock - b.stock;
+                    });
+                }
             })
-            .catch(err => console.error(err))
-
-
-
-
-
-
-
-
-
-
-
-
-
+            .catch(error => console.log(error));
+        this.favoritos = JSON.parse(localStorage.getItem('favoritos'))
+        this.carrito = JSON.parse(localStorage.getItem('carrito')) || []
+        this.total_carrito = localStorage.getItem('total') || 0
     },
     methods: {
-        buttonSuccess() {
-            Swal.fire ({
-                title: '¡Mensaje enviado!',
-                text: "Gracias por escribirnos",
+        getJuguetes: function () {
+            this.juguetes = this.results.filter(item => item.tipo === "Juguete").sort((a, b) => a.stock - b.stock)
+            for (juguete of this.juguetes) {
+                if (!this.favoritos?.some(item => item.nombre === juguete.nombre)) {
+                    juguete.agregar = true;
+                    juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
+                    juguete.idtag = "#" + juguete.nombre;
+                    juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
+
+                } else {
+                    juguete.agregar = false;
+                    juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
+                    juguete.idtag = "#" + juguete.nombre;
+                    juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
+                }
+
+            }
+        },
+        agregarFavorito: function (juguete) {
+            if (!this.favoritos?.some(item => item.nombre === juguete.nombre)) {
+                this.favoritos?.push(juguete);
+                console.log(this.favoritos);
+                juguete.agregar = false;
+                localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
+
+            }
+            this.condicionFav = false;
+        },
+        quitarFavorito: function (juguete) {
+            juguete.agregar = true;
+            this.favoritos = this.favoritos?.filter(j => j.nombre !== juguete.nombre)
+            this.condicionFav = true;
+            localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
+        },
+        addToCart: function (item) {
+            let condicion = this.carrito.some(producto => producto._id === item._id);
+            if (!condicion) {
+                let aux = { ...item }
+                aux.cantidad = 1;
+                this.carrito.push(aux);
+                this.total_carrito = parseInt(this.total_carrito) + parseInt(item.precio);
+            }
+            let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
+            this.farmacia[itemIndex].isInCart = true
+            localStorage.setItem('carrito', JSON.stringify(this.carrito));
+            localStorage.setItem('total', this.total_carrito);
+        },
+        sumarUno: function (item) {
+            let condicion = this.carrito.some(producto => producto._id === item._id);
+            if (condicion) {
+                let aux = this.carrito.map(producto => {
+                    if (producto._id === item._id && producto.cantidad < item.stock) {
+                        let newArr = { ...producto }
+                        newArr.cantidad++;
+                        this.total_carrito = parseInt(this.total_carrito) + parseInt(item.precio);
+                        return newArr
+                    }
+                    else {
+                        console.log("No hay mas productos en stock");
+                        return producto
+                    }
+                })
+                this.carrito = aux;
+                localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                localStorage.setItem('total', this.total_carrito);
+            } else {
+                let aux = { ...item }
+                aux.cantidad = 1;
+                this.carrito.push(aux);
+            }
+        },
+        restarUno: function (item) {
+            if (item.cantidad > 1) {
+                let aux = this.carrito.map(producto => {
+                    if (producto._id === item._id) {
+                        let newArr = { ...producto }
+                        newArr.cantidad--;
+                        this.total_carrito = parseInt(this.total_carrito) - parseInt(item.precio);
+                        localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                        localStorage.setItem('total', this.total_carrito);
+                        return newArr
+                    }
+                    else {
+                        return producto
+                    }
+                })
+                this.carrito = aux;
+                localStorage.setItem('carrito', JSON.stringify(this.carrito));
+
+            } else {
+                this.eliminarItem(item);
+            }
+        },
+        eliminarItem: function (item) {
+            let aux = this.carrito.filter(producto => producto._id !== item._id);
+            this.carrito = aux;
+            this.total_carrito = parseInt(this.total_carrito) - parseInt(item.precio * item.cantidad);
+            localStorage.setItem('carrito', JSON.stringify(this.carrito));
+            localStorage.setItem('total', this.total_carrito);
+
+        },
+        vaciarCarrito: function () {
+            this.carrito = [];
+            this.total_carrito = 0;
+            localStorage.removeItem('carrito');
+            localStorage.removeItem('total');
+        },
+        buttonSwal: function (title, text) {  //Sweetalert
+            Swal.fire({
+                title: title,
+                text: text,
                 icon: 'success',
+                iconColor: '#fbb67e',
                 showConfirmButton: true,
                 confirmButtonText: 'Aceptar',
-                confirmButtonColor: 'rgb(9, 177, 9)',
-                // showCancelButton: true,
-                })
-            },
+                confirmButtonColor: 'rgb(105, 198, 158)',
+            })
+                if(title === "Compra realizada exitosamente"){
+                this.carrito = [];
+                this.total_carrito = 0;
+                localStorage.removeItem('carrito');
+                localStorage.removeItem('total');
+            }
+        },
+        filtrarPrecios: function () {
+            this.preciosFiltrados = this.farmacia.filter(item => item.precio <= this.range)
+            this.preciosFiltrados.sort((a, b) => {
+                return a.stock - b.stock;
+            });
+            console.log(this.preciosFiltrados)
+        },
+        agregarPropiedades: function () {
+            for (item of this.results) {
+                if (!this.favoritos?.some(favorito => favorito.nombre === item.nombre)) {
+                    item.agregar = true;
+                    item.id = item.nombre.replace(/ /g, "_").slice(0, 10).toLowerCase();
+                    item.idtag = "#" + item.id;
+                } else {
+                    item.agregar = false;
+                    item.id = item.nombre.replace(/ /g, "_").slice(0, 10).toLowerCase();
+                    item.idtag = "#" + item.id;
+                }
+            }
+        },
     },
     computed: {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        },            
+        filtrarbusqueda: function () {
+            if (document.title === "Farmacia | Mundo Patitas") {
+                this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
+                && this.preciosFiltrados
+            }
+            if (document.title === "Juguetes | Mundo Patitas") {
+                this.juguetesfiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
+                && this.preciosFiltrados
+            }
+        },
+        cambiar: function(){
+            return this.range
+        },
+    }
 }).mount('#app')

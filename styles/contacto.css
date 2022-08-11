@@ -1,6 +1,6 @@
 @font-face {
     font-family: LetraMain;
-    src: url(./fonts/font-main.woff);
+    src: url(../fonts/font-main.woff);
   }
 .body-contacto{
     background-color: #d6f3ff;

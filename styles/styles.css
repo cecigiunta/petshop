@@ -96,8 +96,11 @@ header{
     font-family: LexendDeca;
 }
 
-
-
+.container-busqueda{
+    position: absolute;
+    right: 20px;
+    top: 105px
+}
 
 .offcanvas-body{
     height: 0%;

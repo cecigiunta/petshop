@@ -11,14 +11,12 @@ Vue.createApp({
             total_carrito: 0,
             busqueda: "",
             farmaciafiltrada: [],
-            jueguetesfiltrados: [],
+            juguetesFiltrados: [],
+            rangeJuguete: 0,
             range: 0,
-            preciosFiltrados: [],
-            preciosFiltradosFarmacia: [],
-            preciosFiltradosJuguetes: [],
         }
     },
-    mounted() {
+    created() {
         fetch("https://apipetshop.herokuapp.com/api/articulos")
             .then(res => res.json())
             .then(datos => {
@@ -30,16 +28,11 @@ Vue.createApp({
 
                 if(document.title === 'Juguetes | Mundo Patitas'){
                     this.getJuguetes();
-                    this.preciosFiltrados = this.juguetes.sort((a, b) => {
-                        return a.stock - b.stock;
-                    });
+                    this.juguetesFiltrados = this.juguetes
                 }
                 if(document.title === 'Farmacia | Mundo Patitas'){
                     this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento"),
                     this.farmaciafiltrada = this.farmacia.sort((a, b) => a.stock - b.stock)
-                    this.preciosFiltrados = this.farmacia.sort((a, b) => {
-                        return a.stock - b.stock;
-                    });
                 }
             })
             .catch(error => console.log(error));
@@ -172,13 +165,6 @@ Vue.createApp({
                 localStorage.removeItem('total');
             }
         },
-        filtrarPrecios: function () {
-            this.preciosFiltrados = this.farmacia.filter(item => item.precio <= this.range)
-            this.preciosFiltrados.sort((a, b) => {
-                return a.stock - b.stock;
-            });
-            console.log(this.preciosFiltrados)
-        },
         agregarPropiedades: function () {
             for (item of this.results) {
                 if (!this.favoritos?.some(favorito => favorito.nombre === item.nombre)) {
@@ -196,16 +182,24 @@ Vue.createApp({
     computed: {
         filtrarbusqueda: function () {
             if (document.title === "Farmacia | Mundo Patitas") {
-                this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
-                && this.preciosFiltrados
+                if(this.range >= 240) {
+                this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item => item.precio <= this.range).sort((a, b) => {
+                    return a.stock - b.stock;
+                });} else {
+                    this.farmaciafiltrada = this.farmacia;
+                }
+                console.log("aber",this.farmaciafiltrada)
+           
             }
             if (document.title === "Juguetes | Mundo Patitas") {
-                this.juguetesfiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
-                && this.preciosFiltrados
+                if(this.rangeJuguete >= 320) {
+                    this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete)} 
+                    else {
+                        this.juguetesFiltrados = this.juguetes;
+                    }
+                console.log("isthisshit",this.juguetesFiltrados)
             }
-        },
-        cambiar: function(){
-            return this.range
+            
         },
     }
 }).mount('#app')

@@ -17,7 +17,7 @@ header{
 }
 
 .header-img-container{
-    width: 135px;
+    width: 125px;
 }
 
 body{
@@ -93,9 +93,7 @@ body{
 }
 
 
-.header-size{
-    height: 19vh;
-}
+
 
 .offcanvas-body{
     height: 0%;
@@ -172,4 +170,10 @@ footer h5{
 .btn-compra-agrega:hover{
     transform: scale(1.1);
     color: white !important;
+}
+
+/*para quitar bordes de botones*/
+.no-border {
+    border: none!important;
+  
 }

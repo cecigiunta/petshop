@@ -136,6 +136,16 @@
                     Juguetes
                 </h2>
             </div>
+
+            <!-- FILTRO POR PRECIO INPUT RANGE -->
+         <div class="range mt-5 d-flex flex-row justify-content-center">
+            <h2>Precio:</h2>
+            <span>Minimo: $320</span>
+            <input autocomplete="off" v-model="range" value="range" steps="100" min="320" max="970" type="range" name="precio" id="precio">
+            <span>Maximo: $ {{range}}</span>
+            <button @click="filtrarPrecios">Filtrar</button>
+         </div>
+
             <div class="medicamentos-container">
                 <template v-if="juguetes.length == 0">
                     <div class="spinner d-flex justify-content-center">
@@ -150,6 +160,7 @@
                             <span v-if="juguete.stock < 5" class="ultimas-unidades text-center border rounded-top position-absolute">¡Últimas
                                 unidades!</span>
                             <img v-bind:src="juguete.imagen" class="card-img-top" :alt="results.nombre">
+                            
                             <div class="card-body p-0 pt-2">
                                 <h6 class="card-title text-center">{{juguete.nombre}}</h6>
                                 <p class="text-center">${{juguete.precio}}</p>

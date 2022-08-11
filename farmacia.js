@@ -30,7 +30,7 @@ Vue.createApp({
                 this.results = data.response;
                 this.preciosFiltrados = data.response.sort((a, b) => {
                     return a.stock - b.stock;
-                }); // ?????
+                }); 
                 this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento")
                 .map(item => {
                     item.isInCart = false

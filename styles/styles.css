@@ -97,9 +97,7 @@ header{
 }
 
 
-.header-size{
-    height: 19vh;
-}
+
 
 .offcanvas-body{
     height: 0%;
@@ -194,4 +192,10 @@ footer h5{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 20px;
+}
+
+/*para quitar bordes de botones*/
+.no-border {
+    border: none!important;
+  
 }

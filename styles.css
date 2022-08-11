@@ -92,9 +92,10 @@ body{
     font-family: LexendDeca;
 }
 
-
-.header-size{
-    height: 19vh;
+.container-busqueda{
+    position: absolute;
+    right: 20px;
+    top: 105px
 }
 
 .offcanvas-body{

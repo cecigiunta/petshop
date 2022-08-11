@@ -5,6 +5,8 @@ Vue.createApp({
             results: [],
             juguetes: [],
             farmacia: [],
+            range: 0,
+            preciosFiltrados: [],
 
             //Mis lineas de CARRITO:
             carrito: [],
@@ -26,6 +28,9 @@ Vue.createApp({
 
                 //lineas de DARIO DE BUSQUEDA
                 this.results = data.response;
+                this.preciosFiltrados = data.response.sort((a, b) => {
+                    return a.stock - b.stock;
+                }); // ?????
                 this.farmacia = this.results.filter((medicamento) => medicamento.tipo === "Medicamento")
                 .map(item => {
                     item.isInCart = false
@@ -119,6 +124,13 @@ Vue.createApp({
             })
             localStorage.removeItem('carrito');
         },
+        filtrarPrecios: function(){
+            this.preciosFiltrados = this.farmacia.filter(item => item.precio <= this.range)
+            this.preciosFiltrados.sort((a, b) => {
+                return a.stock - b.stock;
+            });
+            console.log(this.preciosFiltrados)
+        }
 
     },
     computed: {
@@ -129,6 +141,9 @@ Vue.createApp({
             if (document.title === "Juguetes | Mundo Patitas") {
                 this.juguetesfiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
             }
-        }
+        },
+        cambiar: function(){
+            return this.range
+        },
     },
 }).mount('#app')

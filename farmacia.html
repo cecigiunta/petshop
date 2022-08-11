@@ -76,7 +76,6 @@
                         <h5 class="text-danger opacity-50">No hay productos en el carrito</h5>
                     </div>
                 </div>
-
                 <div v-if="carrito.length > 0 ">
                     <ul v-for="item in carrito" id="carrito" class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -105,11 +104,18 @@
                 </div>
             </div>
         </div>
-
+         <!-- FILTRO POR PRECIO INPUT RANGE -->
+         <div class="range d-flex flex-row">
+            <h2>Precio:</h2>
+            <span>Minimo: 240</span>
+            <input autocomplete="off" v-model="range" value="range" steps="100" min="240" max="1290" type="range" name="" id="precio">
+            <span>Maximo: {{range}}</span>
+            <button @click="filtrarPrecios">Filtrar</button>
+        </div>
         <main>
-            <header class="text-center lead">
+            <section class="text-center lead">
                 <h1>Nuestros productos de farmacia</h1>
-            </header>
+            </section>
             {{filtrarMedicamentos}}
             {{filtrarbusqueda}}
 

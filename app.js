@@ -4,7 +4,28 @@ Vue.createApp({
             url: 'https://apipetshop.herokuapp.com/api/articulos',
             results: [],
             juguetes: [],
-            farmacia: [],          
+            farmacia: [],
+
+
+
+
+
+            //Mis lineas
+            carrito: [],
+            cantidad: 0,
+            total_carrito: 0,
+            total_carrito_farmacia: 0,
+            total_carrito_juguetes: 0
+
+
+
+            // DARIO : []    
+            
+            
+
+
+
+
             
     }},
     created(){
@@ -15,6 +36,19 @@ Vue.createApp({
                 console.log(this.results);
             })
             .catch(err => console.error(err))
+
+
+
+
+
+
+
+
+
+
+
+
+
     },
     methods: {
         buttonSuccess() {
@@ -27,9 +61,27 @@ Vue.createApp({
                 confirmButtonColor: 'rgb(9, 177, 9)',
                 // showCancelButton: true,
                 })
-            }
+            },
     },
     computed: {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 
         },            

@@ -80,9 +80,9 @@
                     </div>
                     <template v-if="favoritos?.length === 0">
                         <div class="modal-body">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card w-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">No hay favoritos ;(</h5>
+                                    <h5 class="card-title">No guardaste favoritos</h5>
                                     <p class="card-text">Agrega alguno!</p>
                                 </div>
                             </div>
@@ -90,14 +90,16 @@
                     </template>
                     <template v-else>
                         <div class="modal-body d-flex align-items-center" v-for="juguete in favoritos">
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{juguete.nombre}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">${{juguete.precio}}</h6>
+                            <div class="card w-100 flex-row flex-md-row">
+                                <div class="card-body d-flex flex-row flex-md-row justify-content-between justify-content-md-between">
+                                    <h5 class="card-title">{{juguete.nombre}} - ${{juguete.precio}}</h5>
+                                    <div>
+                                        <button @click="addToCart(juguete)" type="button" class="btn btn-link text-dark"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30"
+                                            fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16"><path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                            </svg></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <button @click="quitarFavorito(juguete)" type="button" class="border-borderless btn"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                <button @click="quitarFavorito(juguete)" type="button" class="border-borderless btn btn-link text-dark"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                   </svg></button>
                                
@@ -105,11 +107,6 @@
                         </div>
 
                     </template>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -214,43 +211,39 @@
                                 <p class="card-text text-center">Disponibles: {{medicamento.stock}} unidades</p>
                                 <div class="footer-modal-farmacia">
                                     <!--AGREGO BUTTONS PARA FAV AHORA SON DOS EN VEZ DE UNO Y AGREGUE ID A BOTON DE MAS INFO-->
-                                    <button type="button" class="btn btn-outline-danger btn-info "
-                                    data-bs-toggle="modal" :data-bs-target="medicamento.idtag">
-                                        Info +
-                                    </button>
-                                    <button v-if="medicamento.agregar" @click="agregarFavorito(medicamento)"
-                                        type="button"
-                                        class="button-fav btn btn-outline-danger btn-modal btn-hover "><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
-                                            class="bi bi-heart p-1" viewBox="0 0 16 16">
+                                    <button class="btn btn-light btn-card" type="button" 
+                                    data-bs-toggle="modal" :data-bs-target="medicamento.idtag"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                      </svg></button>
+                                    <button class="btn btn-light btn-card" v-if="medicamento.agregar" @click="agregarFavorito(medicamento)" type="button"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                            class="bi bi-heart" viewBox="0 0 16 16">
                                             <path class="button-heart"
                                                 d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                         </svg></button>
-                                    <button v-else @click="quitarFavorito(medicamento)" type="button"
-                                        class="button-fav btn btn-outline-danger btn-modal btn-hover "><svg
+                                    <button class="btn btn-light btn-card" v-else @click="quitarFavorito(medicamento)" type="button"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
                                             class="bi bi-heart-fill p-1" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
                                                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                                         </svg></button>
                                     <!-- VA HASTA ACA -->
-                                    <button v-if="medicamento.isInCart === false" id="addCarrito"
-                                        @click="addToCart(medicamento)" type="button"
-                                        class="btn btn-outline-dark btn-modal-dos-hover"> <svg
+                                    <button class="btn btn-light btn-card" v-if="medicamento.isInCart === false" id="addCarrito"
+                                        @click="addToCart(medicamento)" type="button"> <svg
                                             xmlns="http://www.w3.org/2000/svg" width="40" height="30"
                                             fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
                                                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                                         </svg>
                                     </button>
-                                    <a v-else id="goCarrito" class="text-reset" data-bs-toggle="offcanvas"
+                                    <button class="btn btn-light btn-card" v-else id="goCarrito" class="text-reset" data-bs-toggle="offcanvas"
                                         href="#offcanvasRight" role="button" aria-controls="offcanvasExample">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="62" height="42"
-                                            fill="currentColor" class="carrito bi bi-cart4 pb-1" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                                        </svg>
-                                    </a>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                          </svg><span> Ver</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -271,29 +264,31 @@
                                         <p class="card-text text-center">Precio: ${{medicamento.precio}}</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <form class="cantidad">
-                                            <label for="cantidad">Cantidad: </label>
-                                            <input type="number" min="1" :max="medicamento.stock"
-                                                name="cantidad" id="cantidad">
-                                        </form>
-                                        <div>
-                                            <button type="button"
-                                                class="btn btn-outline-danger btn-modal btn-hover btn-modal"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                                    fill="currentColor" class="bi bi-heart p-1" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                </svg></button>
+                                        
+                                            <button v-if="medicamento.agregar" @click="agregarFavorito(medicamento)"
+                                                    type="button" class="btn btn-light btn-card"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                                        fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                        <path class="button-heart"
+                                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                    </svg></button>
+                                                <button v-else @click="quitarFavorito(medicamento)" type="button"
+                                                class="btn btn-light btn-card"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                                        fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                    </svg></button>
 
                                             <button @click.once="addToCart(medicamento)" id="button-carrito"
-                                                type="button" class="btn btn-outline-dark btn-modal-dos-hover">
+                                                type="button" class="btn btn-light btn-card">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30"
                                                     fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                                     <path
                                                         d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                                                 </svg>
                                             </button>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

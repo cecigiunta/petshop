@@ -208,8 +208,8 @@
                                     <textarea class="form-control py-5" id="mensaje" name="mensaje" rows="9"></textarea>
                                 </div>
                             </form>
-                            <button type="submit"
-                                v-on:click="buttonSwal('¡Mensaje enviado!', 'Gracias por escribirnos :)')" 
+                            <button
+                                @click="buttonSwal('¡Mensaje enviado!', 'Gracias por escribirnos :)')" 
                                 id="boton-comprar" class="btn btn-style w-50 py-2 mt-3"> 
                                 Enviar
                             </button>

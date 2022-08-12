@@ -82,10 +82,15 @@ Vue.createApp({
                 aux.cantidad = 1;
                 this.carrito.push(aux);
                 this.total_carrito = parseInt(this.total_carrito) + parseInt(item.precio);
-                console.log('lpm', item.nombre);
+            } 
+            if(document.title === "Juguetes | Mundo Patitas"){
+                let itemIndex = this.juguetes.findIndex(element => element._id === item._id)
+                this.juguetes[itemIndex].isInCart = true
+                }
+                if(document.title === "Farmacia | Mundo Patitas"){
+                let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
+                this.farmacia[itemIndex].isInCart = true
             }
-            let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
-            this.farmacia[itemIndex].isInCart = true
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
             localStorage.setItem('total', this.total_carrito);
         },
@@ -165,6 +170,7 @@ Vue.createApp({
                 localStorage.removeItem('carrito');
                 localStorage.removeItem('total');
             }
+            console.log('hola');
         },
         agregarPropiedades: function () {
             for (item of this.results) {

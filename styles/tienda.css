@@ -7,24 +7,25 @@ main {
     padding: 0;
     box-sizing: border-box;
 }
+.spinner {
+    width: 22rem;
+    height: 20rem;
+}
 
 
-.ultimas-unidades {
-    background-color: rgba(209, 30, 30, 0.603) !important;
-    color: white;
+/*Farmacia */
+.medicamentos-container{
     width: 100%;
-    left: 0px;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-evenly !important;
+    justify-content: center;
+    margin:auto;
 }
-.card
-{
-    background-color: #c4f8e3 !important;
-}
-.card-body {
-    background-color: #c4f8e3;
-}
-.card-body  a{
-    background-color: rgba(240, 248, 255, 0)!important;
-}
+
+
+/*Juguetes */
 .title-juguetes {
     width: 900px;
     height: 40px;
@@ -37,6 +38,25 @@ main {
     transform: skew(-20deg);
     z-index: -1;
 }
+
+
+/*--------------------- Cards ------------------------*/
+
+.card {
+    background-color: #c4f8e3 !important;
+}
+.ultimas-unidades {
+    background-color: rgba(231, 60, 60, 0.789) !important;
+    color: white;
+    width: 100%;
+    left: 0px;
+}
+.card-body {
+    background-color: #c4f8e3;
+}
+/* .card-body  a{
+    background-color: rgba(39, 139, 226, 0)!important;
+} */
 
 .more-info {
     background-color: #faa560!important;
@@ -56,7 +76,6 @@ main {
 .modal-body {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-
 }
 
 .button-heart{
@@ -104,12 +123,12 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-evenly;
 }
-.farmacia-ultimos{
+/* .farmacia-ultimos{
     background-color: rgb(255, 0, 13) !important;
     color: white;
     width: 100%;
     left: 0px;
-}
+} */
 .btn-hover:hover{
     background-color: red !important;
 }
@@ -127,65 +146,20 @@ input[type=number]::-webkit-inner-spin-button {
     justify-content: space-evenly !important;
 }
 
-.ultimas-unidades {
-    background-color: rgba(209, 30, 30, 0.603) !important;
-    color: white;
-    width: 100%;
-    left: 0px;
-}
 
-.card
- {
-    background-color: #c4f8e3 !important;
-    
-}
-.card-body {
-    background-color: #c4f8e3;
-}
-.card-body  a{
-    background-color: rgba(240, 248, 255, 0)!important;
-}
 
-.title-juguetes {
-    width: 900px;
-    height: 40px;
-    border: 3px solid #c4f8e3!important;
-    background: #c4f8e3;
-    -webkit-transform: skew(-20deg);
-    -moz-transform: skew(-20deg);
-    -ms-transform: skew(-20deg);
-    -o-transform: skew(-20deg);
-    transform: skew(-20deg);
-    z-index: -1;
-}
+
 
 .more-info {
     background-color: #faa560!important;
     border-color: #faa560!important;
 }
 
-.medicamentos-container{
-    width: 100%;
-    display: flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    justify-content: space-evenly !important;
-    justify-content: center;
-    margin:auto;
-}
 
 .modal-body {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-
 }
 
 
-.spinner {
-    width: 22rem;
-    height: 20rem;
-}
 
-main {
-    min-height: 100vh;
-}

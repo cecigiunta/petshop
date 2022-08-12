@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="./assets/fav_icon.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/tienda.css">
-    <link href="juguetes.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -103,7 +102,6 @@
                                
                             </div>
                         </div>
-
                     </template>
 
                     <div class="modal-footer">
@@ -157,30 +155,37 @@
                 <button v-if="carrito.length > 0 " @click="vaciarCarrito" id="boton-vaciar" class="btn btn-link text-reset text-decoration-none fs-5">Vaciar Carrito</button>
             </div>
         </div>
-        <!-- FILTRO POR PRECIO INPUT RANGE -->
         <main>
-            <section class="text-center lead">
-                <h1>Nuestros productos de farmacia</h1>
-            </section>
-            <!-- ESTE INPUT TIENE QUE ESTAR ASI PARA QUE NO DE ERROR-->
-            <div class="range d-flex flex-row">
-                <h2>Precio:</h2>
-                <span>Minimo: 240</span>
-                <input autocomplete="off" v-model="range" steps="100" min="239" max="1290"  name="rangeFarmacia" type="range"
-                    id="precio_farmacia">
-                <span>Maximo:{{range}}</span>
-                <!-- <button type="button" @click="filtrarPreciosFarmacia">Filtrar</button> -->
+            <!-- AGREGUE UN POQUITO DE MARGEN <3 -->
+            <div class="d-flex justify-content-center my-3">
+                <div class="title-juguetes">
+                </div>
+                <h2 class="text-center position-absolute">
+                    Farmacia
+                </h2>
+            </div> 
+            <!-- FILTRO POR PRECIO INPUT RANGE  -->  
+            <div class="range rango-precios col-md-8 d-flex flex-row mx-auto align-items-center justify-content-center">
+                <h5 class="d-md-flex text-center me-4 d-none">Filtrar por precio: </h5>
+                <div class="d-flex flex-row">
+                    <h5 class="me-2 ms-3">Mínimo: $240 </h5>
+                    <input autocomplete="off" v-model="range" value="range" steps="100" min="240" max="1290" type="range"
+                    name="" id="precio" class="my-0">
+                    <h5 class="mx-3"> Máximo: ${{range}}</h5>
+                </div>
             </div>
-          
-            <!-- CAMBIE ESTA CLASE. ESTABA EN EL MAIN -->
+
             <div class="medicamentos-container">
-                <template v-if="farmacia.length === 0">
-                    <div class="spinner d-flex justify-content-center">
+                <!-- AGREGUE EL MISMO LOADING QUE EN JUGUETES - CECI -->
+                <template v-if="farmacia.length == 0">
+                    <div class="spinner text-danger d-flex flex-column align-items-center mx-auto opacity-25 my-5">
                         <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
+                        <h3>Cargando Productos...</h3>
                     </div>
                 </template>
+                <!-- HASTA ACA EL LOADING -->
                 <template v-else>
                     <div class="col-sm-6 col-md-9" v-if="farmaciafiltrada.length === 0">
                         <svg xmlns="http://www.w3.org/2000/svg">
@@ -199,8 +204,9 @@
                     
                     {{filtrarbusqueda}}
 
-                    <div v-for="medicamento in farmaciafiltrada">
-                        <div class="card mb-3 p-0" style="width: 22rem;">
+                    <div v-for="medicamento in farmaciafiltrada" class="animate__fadeInUp">
+
+                        <div class="card mb-3 p-0 my-3" style="width: 22rem;">
                             <span v-if="medicamento.stock < 5"
                             class="ultimas-unidades text-center border rounded-top position-absolute">¡Últimas
                                 unidades!</span>
@@ -276,7 +282,7 @@
                                             <input type="number" min="1" :max="medicamento.stock"
                                                 name="cantidad" id="cantidad">
                                         </form>
-                                        <div>
+                                    <div>
                                             <button type="button"
                                                 class="btn btn-outline-danger btn-modal btn-hover btn-modal"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="30" height="30"
@@ -302,6 +308,7 @@
 
                     </div>
                 </template>
+            </div>
         </main>
         <footer class="bg-img container-fluid pt-md-5">
             <div class="d-flex flex-column flex-md-column">

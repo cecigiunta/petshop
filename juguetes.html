@@ -107,7 +107,6 @@
                                         <path
                                             d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                     </svg></button>
-
                             </div>
                         </div>
 
@@ -166,29 +165,33 @@
             </div>
         </div>
         <main class="container-fluid">
-            <!-- FILTRO POR PRECIO INPUT RANGE -->  
-        <div class="d-flex justify-content-center m-2">
-            <div class="title-juguetes">
+            <!-- AGREGUE UN POQUITO DE MARGEN <3 -->
+            <div class="d-flex justify-content-center my-3">
+                <div class="title-juguetes">
+                </div>
+                <h2 class="text-center position-absolute">
+                    Juguetes
+                </h2>
+            </div> 
+            <!-- ESTE INPUT TIENE QUE ESTAR ASI PARA QUE NO DE ERROR-->
+            {{filtrarbusqueda}}
+
+            <!-- FILTRO POR PRECIO INPUT RANGE CON ESTILOS NUEVOS -->  
+            <div class="range rango-precios col-md-8 d-flex flex-row mx-auto align-items-center justify-content-center">
+                <h5 class="d-md-flex text-center me-4 d-none">Filtrar por precio: </h5>
+                <div class="d-flex flex-row">
+                    <h5 class="me-2 ms-3">Mínimo: $320 </h5>
+                    <input autocomplete="off" v-model="rangeJuguete" value="range" steps="100" min="320" max="970" type="range"
+                    name="" id="precio" class="my-0">
+                    <h5 class="mx-3"> Máximo: ${{rangeJuguete}}</h5>
+                </div>
             </div>
-            <h2 class="text-center position-absolute">
-                Juguetes
-            </h2>
-        </div> 
-        <!-- ESTE INPUT TIENE QUE ESTAR ASI PARA QUE NO DE ERROR-->
-        {{filtrarbusqueda}}
-        <div class="range d-flex flex-row">
-            <h2>Precio:</h2>
-            <span>Minimo: 320</span>
-            <input autocomplete="off" v-model="rangeJuguete" steps="100" min="319" max="970" type="range" name="rangeJuguete"
-            id="precio_juguete">
-            <span>Maximo:{{rangeJuguete}}</span>
-            <!-- <button type="button" @click="filtrarPreciosJuguetes">Filtrar</button> HAY QUE SACAR ESTE BOTON-->
-        </div>
+
         <!-- CAMBIE ESTA CLASE. ESTABA EN EL MAIN -->
-        
+        <!-- AGREGUE EL MISMO LOADING QUE EN FARMACIA - CECI -->
         <div class="medicamentos-container">
             <template v-if="juguetes.length == 0">
-                <div class="spinner d-flex flex-column align-items-center mx-auto opacity-50 my-5">
+                <div class="spinner text-danger d-flex flex-column align-items-center mx-auto opacity-25 my-5">
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -210,8 +213,8 @@
                             <div> No hay resultados para esta búsqueda.</div>
                         </div>
                     </div>
-
-                    <div v-for="item in juguetesFiltrados" class="mb-2 mt-3 container-cards" >
+                    <!-- AGREGUE CLASE DE ANIMACION -->
+                    <div v-for="item in juguetesFiltrados" class="mb-2 mt-3 container-cards animate__fadeInUp" >
                         <div class="card mb-3 p-0" style="width: 22rem;">
                             <span v-if="item.stock < 5"
                                 class="ultimas-unidades text-center border rounded-top position-absolute">¡Últimas
@@ -252,7 +255,7 @@
                                                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                                         </svg></button>
 
-                                    <button @click="addToCart(juguete)" type="button" class=" btn btn-secondary"><svg
+                                    <button @click="addToCart(item)" type="button" class=" btn btn-secondary"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="40" height="30"
                                             fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
@@ -296,7 +299,7 @@
                                                     </svg></button>
 
 
-                                                <button @click="addToCart(juguete)" type="button" class="btn btn-secondary"> <svg
+                                                <button @click="addToCart(item)" type="button" class="btn btn-secondary"> <svg
                                                         xmlns="http://www.w3.org/2000/svg" width="40" height="30"
                                                         fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                                         <path

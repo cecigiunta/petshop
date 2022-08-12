@@ -141,16 +141,16 @@
                             </div>
                             <!-- CAMBIE ESTO. EL TAMAÑO DE LOS BOTONES Y AGREGUE FLEX. Ceci 10/8 -->
                             <div class="w-25 w-md-25 d-flex mx-2">
-                                <button @click="sumarUno(item)" class="button-carrito btn btn-link text-reset px-1 fs-4"><i class="fa-solid fa-circle-plus"></i></button>
-                                <button @click="restarUno(item)" class="button-carrito btn btn-link text-reset px-1 fs-4"><i class="fa-solid fa-circle-minus"></i></button>
-                                <button @click="eliminarItem(item)" class="button-carrito btn btn-link px-1 fs-4 text-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                <button @click="restarUno(item)" class="button-carrito btn btn-link text-reset px-1 fs-5"><i class="fa-solid fa-circle-minus"></i></button>
+                                <button @click="sumarUno(item)" class="button-carrito btn btn-link text-reset px-1 fs-5"><i class="fa-solid fa-circle-plus"></i></button>
+                                <button @click="eliminarItem(item)" class="button-carrito btn btn-link px-1 fs-5 text-danger"><i class="fa-solid fa-trash-can"></i></button>
                             </div>
                         </li>
-                        <div v-if="item.cantidad === item.stock">
-                            <div class="bg-warning opacity-75">
-                                <h6 class="text-center">¡Última unidad en Stock!</h6>
-                            </div>
+                    <div v-if="item.cantidad === item.stock">
+                        <div class="bg-warning opacity-75">
+                            <h6 class="text-center">¡Última unidad en Stock!</h6>
                         </div>
+                    </div>
                     </ul>
                     <hr>
                     <div class="d-flex justify-content-between">
@@ -161,10 +161,9 @@
                             Finalizar compra
                         </button>
                     </div>
-                    <button @click="vaciarCarrito" id="boton-vaciar" class="btn btn-link text-reset text-decoration-none fs-5">Vaciar Carrito</button>
                 </div>
+                <button v-if="carrito.length > 0 " @click="vaciarCarrito" id="boton-vaciar" class="btn btn-link text-reset text-decoration-none fs-5">Vaciar Carrito</button>
             </div>
-                    <button @click="vaciarCarrito" id="boton-vaciar" class="btn btn-link text-reset text-decoration-none fs-5">Vaciar Carrito</button>
         </div>
         <main class="container-fluid">
             <!-- FILTRO POR PRECIO INPUT RANGE -->  

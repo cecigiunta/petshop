@@ -82,6 +82,7 @@ Vue.createApp({
                 aux.cantidad = 1;
                 this.carrito.push(aux);
                 this.total_carrito = parseInt(this.total_carrito) + parseInt(item.precio);
+                console.log('lpm', item.nombre);
             }
             let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
             this.farmacia[itemIndex].isInCart = true
@@ -186,16 +187,17 @@ Vue.createApp({
                 this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item => item.precio <= this.range).sort((a, b) => {
                     return a.stock - b.stock;
                 });} else {
-                    this.farmaciafiltrada = this.farmacia;
+                    this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()));
                 }
                 console.log("aber",this.farmaciafiltrada)
            
             }
             if (document.title === "Juguetes | Mundo Patitas") {
                 if(this.rangeJuguete >= 320) {
-                    this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete)} 
-                    else {
-                        this.juguetesFiltrados = this.juguetes;
+                    this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete).sort((a, b) => {
+                        return a.stock - b.stock;
+                    });} else {
+                        this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()));
                     }
                 console.log("isthisshit",this.juguetesFiltrados)
             }

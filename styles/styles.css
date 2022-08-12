@@ -207,6 +207,12 @@ footer h5{
 .animate__fadeInUp {
     animation-duration: 2s;
 }
+.animate__fadeInRight{
+    animation-duration: 3s;
+}
+.animate__fadeInLeft{
+    animation-duration: 3s;
+}
 
 
 

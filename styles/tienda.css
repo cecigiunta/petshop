@@ -61,9 +61,9 @@ main {
 .card-body {
     background-color: #c4f8e3;
 }
-/* .card-body  a{
-    background-color: rgba(39, 139, 226, 0)!important;
-} */
+.card-img-top{
+    max-height: 19rem;
+}
 
 .more-info {
     background-color: #faa560!important;
@@ -78,6 +78,7 @@ main {
     justify-content: space-evenly !important;
     justify-content: center;
     margin:auto;
+    gap: 1rem;
 }
 
 .modal-body {

@@ -206,7 +206,6 @@ footer h5{
 /* ANIMACION CARDS FARMACIA Y JUGUETES */
 .animate__fadeInUp {
     animation-duration: 2s;
-    animation-fill-mode: both;
 }
 
 

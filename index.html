@@ -149,7 +149,7 @@
                         </button>
                     </div>
                 </div>
-                <button @click="vaciarCarrito" id="boton-vaciar" class="btn btn-link text-reset text-decoration-none fs-5">Vaciar Carrito</button>
+                <button v-if="carrito.length > 0" @click="vaciarCarrito" id="boton-vaciar" class="btn btn-link text-reset text-decoration-none fs-5">Vaciar Carrito</button>
               </div>
         </div>
         <section>

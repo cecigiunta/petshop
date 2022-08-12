@@ -1,35 +1,24 @@
 *{
     src: url(../fonts/bungee-v11-latin-regular.woff2);
   }
-body{
-    
-    background-color: rgba(252, 186, 236, 0.576)!important
-    /* background: url(https://i.pinimg.com/236x/f1/31/21/f131218f92ef17f96be542dddfb1745c--pattern-wallpaper-background-images.jpg) ; */
-    
-}
-
 .iner{
-    /* background-color: rgb(247, 145, 12); */
-    /* background-color: rgb(147, 208, 240,0.666); */
-    background-color: rgba(255, 123, 0, 0.409);
-    
+    background-color: rgba(234, 49, 74, 0.758);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    padding-bottom: 0px !important;
 }
-.cover{
-    box-shadow:1px 1px 2px 2px rgb(241, 182, 182);
-    
-    
+.iner:hover{
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
 }
-
-
 
 .titulo{
-   color: rgb(80, 80, 63);
-   text-align: center;
+    color: rgb(80, 80, 63);
+    text-align: center;
 }
 .ubicacion{
     text-align: center;
-   padding-bottom: 2%;
-   
+    padding-bottom: 2%;
 }
 
 .boderDerecha{
@@ -38,14 +27,11 @@ body{
 }
 .borderiz{
     border-radius:20px 0px 0px 20px ;
-
 }
 .oferta{
-    
     text-align: center;
     background-color: rgb(100, 123, 133);
     color: aliceblue;
-    
 }
 
 .carousel-item {
@@ -56,11 +42,10 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  }
+}
 
-  .info-mapa{
-
-background-color: rgba(245, 142, 7, 0.402);
+.info-mapa{
+background-color: rgba(234, 49, 74, 0.758);
 height: 50%;
 margin-left: 25%;
 margin-right: 25%;
@@ -68,11 +53,11 @@ border-radius: 20px;
 border: 2px;
 border-color: black;
 box-shadow:1px 2px 2px black;
-  }
-  .mapa iframe{
-    box-shadow:1px 1px 1px black;
-    
-  }
-  .m-3{
-    font-size: 15px;
-  }
+}
+.mapa iframe{
+  box-shadow:1px 1px 1px black;
+  
+}
+.m-3{
+  font-size: 15px;
+}

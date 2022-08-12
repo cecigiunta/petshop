@@ -36,7 +36,7 @@ Vue.createApp({
                 }
             })
             .catch(error => console.log(error));
-        this.favoritos = JSON.parse(localStorage.getItem('favoritos'))
+        this.favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
         this.carrito = JSON.parse(localStorage.getItem('carrito')) || []
         this.total_carrito = localStorage.getItem('total') || 0
     },

@@ -186,7 +186,7 @@ Vue.createApp({
                 this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item => item.precio <= this.range).sort((a, b) => {
                     return a.stock - b.stock;
                 });} else {
-                    this.farmaciafiltrada = this.farmacia;
+                    this.farmaciafiltrada =  this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
                 }
                 console.log("aber",this.farmaciafiltrada)
            
@@ -195,7 +195,7 @@ Vue.createApp({
                 if(this.rangeJuguete >= 320) {
                     this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete)} 
                     else {
-                        this.juguetesFiltrados = this.juguetes;
+                        this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
                     }
                 console.log("isthisshit",this.juguetesFiltrados)
             }

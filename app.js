@@ -35,8 +35,9 @@ Vue.createApp({
                     this.farmaciafiltrada = this.farmacia.sort((a, b) => a.stock - b.stock)
                 }
             })
+       
             .catch(error => console.log(error));
-        this.favoritos = JSON.parse(localStorage.getItem('favoritos'))
+             this.favoritos = JSON.parse(localStorage.getItem('favoritos'))
         this.carrito = JSON.parse(localStorage.getItem('carrito')) || []
         this.total_carrito = localStorage.getItem('total') || 0
     },
@@ -195,7 +196,7 @@ Vue.createApp({
                 if(this.rangeJuguete >= 320) {
                     this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete)} 
                     else {
-                        this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
+                        this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()));
                     }
                 console.log("isthisshit",this.juguetesFiltrados)
             }

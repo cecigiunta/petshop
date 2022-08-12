@@ -37,9 +37,9 @@ Vue.createApp({
             })
        
             .catch(error => console.log(error));
-           // this.carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            //this.total_carrito = localStorage.getItem('total') || 0;
-            //this.favoritos = JSON.parse(localStorage.getItem('favoritos'));
+         this.carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            this.total_carrito = localStorage.getItem('total') || 0;
+            this.favoritos = JSON.parse(localStorage.getItem('favoritos'));
     },
     methods: {
         getJuguetes: function () {
@@ -50,23 +50,19 @@ Vue.createApp({
                     juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
                     juguete.idtag = "#" + juguete.nombre;
                     juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
-
                 } else {
                     juguete.agregar = false;
                     juguete.id = juguete.nombre.replace(/ /g, "_").toLowerCase();
                     juguete.idtag = "#" + juguete.nombre;
                     juguete.idtag = juguete.idtag.replace(/ /g, "_").toLowerCase()
                 }
-
             }
         },
         agregarFavorito: function (juguete) {
             if (!this.favoritos?.some(item => item.nombre === juguete.nombre)) {
                 this.favoritos?.push(juguete);
-                console.log(this.favoritos);
                 juguete.agregar = false;
                 localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
-
             }
             this.condicionFav = false;
         },
@@ -83,9 +79,15 @@ Vue.createApp({
                 aux.cantidad = 1;
                 this.carrito.push(aux);
                 this.total_carrito = parseInt(this.total_carrito) + parseInt(item.precio);
+            } 
+            if(document.title === "Juguetes | Mundo Patitas"){
+                let itemIndex = this.juguetes.findIndex(element => element._id === item._id)
+                this.juguetes[itemIndex].isInCart = true
+                }
+                if(document.title === "Farmacia | Mundo Patitas"){
+                let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
+                this.farmacia[itemIndex].isInCart = true
             }
-            let itemIndex = this.farmacia.findIndex(element => element._id === item._id)
-            this.farmacia[itemIndex].isInCart = true
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
             localStorage.setItem('total', this.total_carrito);
         },
@@ -100,7 +102,6 @@ Vue.createApp({
                         return newArr
                     }
                     else {
-                        console.log("No hay mas productos en stock");
                         return producto
                     }
                 })
@@ -141,7 +142,6 @@ Vue.createApp({
             this.total_carrito = parseInt(this.total_carrito) - parseInt(item.precio * item.cantidad);
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
             localStorage.setItem('total', this.total_carrito);
-
         },
         vaciarCarrito: function () {
             this.carrito = [];
@@ -149,22 +149,31 @@ Vue.createApp({
             localStorage.removeItem('carrito');
             localStorage.removeItem('total');
         },
-        buttonSwal: function (title, text) {  //Sweetalert
+        buttonSwal: function () {  //Sweetalert
+            this.carrito = [];
+            this.total_carrito = 0;
             Swal.fire({
-                title: title,
-                text: text,
+                title: 'Compra realizada exitosamente',
+                text: "¡Gracias por confiar en Mundo Patitas!",
                 icon: 'success',
                 iconColor: '#fbb67e',
                 showConfirmButton: true,
                 confirmButtonText: 'Aceptar',
                 confirmButtonColor: 'rgb(105, 198, 158)',
             })
-                if(title === "Compra realizada exitosamente"){
-                this.carrito = [];
-                this.total_carrito = 0;
-                localStorage.removeItem('carrito');
-                localStorage.removeItem('total');
-            }
+            localStorage.removeItem('carrito');
+            localStorage.removeItem('total');
+        },
+        buttonSuccess (){
+            Swal.fire({
+                title: '¡Mensaje enviado exitosamente!',
+                text: 'Gracias por escribirnos :)',
+                icon: 'success',
+                iconColor: '#fbb67e',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: 'rgb(105, 198, 158)',
+            })
         },
         agregarPropiedades: function () {
             for (item of this.results) {
@@ -187,20 +196,17 @@ Vue.createApp({
                 this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item => item.precio <= this.range).sort((a, b) => {
                     return a.stock - b.stock;
                 });} else {
-                    this.farmaciafiltrada =  this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()))
+                    this.farmaciafiltrada = this.farmacia.filter(medicacion => medicacion.nombre.toLowerCase().includes(this.busqueda.toLowerCase()));
                 }
-                console.log("aber",this.farmaciafiltrada)
-           
             }
             if (document.title === "Juguetes | Mundo Patitas") {
                 if(this.rangeJuguete >= 320) {
-                    this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete)} 
-                    else {
+                    this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase())).filter(item=> item.precio <= this.rangeJuguete).sort((a, b) => {
+                        return a.stock - b.stock;
+                    });} else {
                         this.juguetesFiltrados = this.juguetes.filter(juguete => juguete.nombre.toLowerCase().includes(this.busqueda.toLowerCase()));
                     }
-                console.log("isthisshit",this.juguetesFiltrados)
             }
-            
         },
     }
 }).mount('#app')

@@ -7,13 +7,21 @@ main {
     padding: 0;
     box-sizing: border-box;
 }
+.spinner {
+    width: 22rem;
+    height: 20rem;
+}
 
 
-.ultimas-unidades {
-    background-color: rgba(209, 30, 30, 0.603) !important;
-    color: white;
+/*Farmacia */
+.medicamentos-container{
     width: 100%;
-    left: 0px;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-evenly !important;
+    justify-content: center;
+    margin:auto;
 }
 .card
 {
@@ -37,6 +45,25 @@ main {
     transform: skew(-20deg);
     z-index: -1;
 }
+
+
+/*--------------------- Cards ------------------------*/
+
+.card {
+    background-color: #c4f8e3 !important;
+}
+.ultimas-unidades {
+    background-color: rgba(231, 60, 60, 0.789) !important;
+    color: white;
+    width: 100%;
+    left: 0px;
+}
+.card-body {
+    background-color: #c4f8e3;
+}
+/* .card-body  a{
+    background-color: rgba(39, 139, 226, 0)!important;
+} */
 
 .more-info {
     background-color: #faa560!important;
@@ -104,17 +131,17 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-evenly;
 }
-.farmacia-ultimos{
+/* .farmacia-ultimos{
     background-color: rgb(255, 0, 13) !important;
     color: white;
     width: 100%;
     left: 0px;
-}
+} */
 .btn-hover:hover{
     background-color: red !important;
 }
 .btn-modal-dos-hover:hover{
-    background-color: orangered !important;
+    background-color: rgb(255, 203, 184) !important;
 }
 .btn-modal{
     margin-right: 1.5rem !important;
@@ -186,6 +213,10 @@ input[type=number]::-webkit-inner-spin-button {
     height: 20rem;
 }
 
-main {
-    min-height: 100vh;
+
+.btn-card:hover{
+    transform: scale(1.1);
+    background-color: #fbb67e !important;
+    border-color: #fbb67e !important;
+    color: white !important;
 }

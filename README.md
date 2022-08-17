@@ -5,7 +5,7 @@ Este proyecto se realizó como trabajo grupal integrando las tecnologías de HTM
 
 ### Funcionalidades
  - Página principal en la cual se muestra una introducción de la empresa
- - Páginas Farmacia y Juguetes en la que se muestran los productos, pudiendo agregarlos a favoritos, al carrito y ver detalle.
+ - Páginas Farmacia y Juguetes en la que se muestran los productos, pudiendo agregarlos a favoritos, al carrito, ver detalle y filtrar por menor-mayor precio.
  - Página de contacto en donde se muestran los datos y un formulario para enviar un mensaje
  - Diseño Responsive.
  - Posiblidad de recuperar los productos favoritos y los agregados al carrito en todas las páginas dentro de la aplicación web

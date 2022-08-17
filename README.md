@@ -1,7 +1,7 @@
 # Petshop "Mundo Patitas"
 
 ## Proyecto Grupal - Bootcamp Iniciatec
-Este proyecto se realizó como trabajo grupal integrando las tecnologías de HTML, CSS, JavaScript y vue Js.
+Este proyecto se realizó como trabajo grupal integrando las tecnologías de HTML, CSS, JavaScript y Vue Js.
 
 ### Funcionalidades
  - Página principal en la cual se muestra una introducción de la empresa
